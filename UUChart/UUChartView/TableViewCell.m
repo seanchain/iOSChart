@@ -43,6 +43,11 @@
     return xTitles;
 }
 
+- (NSArray *)getXNames
+{
+    return @[@"Sports", @"Tech", @"Financial", @"Art", @"Tour"];
+}
+
 #pragma mark - @required
 //横坐标标题数组
 - (NSArray *)UUChart_xLableArray:(UUChart *)chart
@@ -51,7 +56,7 @@
     if (path.section==0) {
         switch (path.row) {
             case 0:
-                return [self getXTitles:5];
+                return [self getXNames];
             case 1:
                 return [self getXTitles:11];
             case 2:
@@ -73,6 +78,7 @@
     }
     return [self getXTitles:20];
 }
+
 //数值多重数组
 - (NSArray *)UUChart_yValueArray:(UUChart *)chart
 {
@@ -106,7 +112,7 @@
 //颜色数组
 - (NSArray *)UUChart_ColorArray:(UUChart *)chart
 {
-    return @[UUGreen,UURed,UUBrown];
+    return @[UUGreen,UURed,UUTwitterColor];
 }
 //显示数值范围
 - (CGRange)UUChartChooseRangeInLineChart:(UUChart *)chart
@@ -126,6 +132,7 @@
 #pragma mark 折线图专享功能
 
 //标记数值区域
+/*
 - (CGRange)UUChartMarkRangeInLineChart:(UUChart *)chart
 {
     if (path.row==2) {
@@ -133,8 +140,10 @@
     }
     return CGRangeZero;
 }
+ */
 
 //判断显示横线条
+
 - (BOOL)UUChart:(UUChart *)chart ShowHorizonLineAtIndex:(NSInteger)index
 {
     return YES;
@@ -143,6 +152,6 @@
 //判断显示最大最小值
 - (BOOL)UUChart:(UUChart *)chart ShowMaxMinAtIndex:(NSInteger)index
 {
-    return path.row==2;
+    return YES;
 }
 @end
