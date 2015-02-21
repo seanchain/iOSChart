@@ -83,15 +83,15 @@
 - (NSArray *)UUChart_yValueArray:(UUChart *)chart
 {
     NSArray *ary = @[@"22",@"44",@"15",@"40",@"42"];
-    NSArray *ary1 = @[@"22",@"54",@"15",@"30",@"42",@"77",@"43"];
-    NSArray *ary2 = @[@"76",@"34",@"54",@"23",@"16",@"32",@"17"];
+    NSArray *ary1 = @[@"22",@"54",@"15",@"30",@"42"];
+    NSArray *ary2 = @[@"76",@"34",@"54",@"23",@"15"];
     NSArray *ary3 = @[@"3",@"12",@"25",@"55",@"52"];
     NSArray *ary4 = @[@"23",@"42",@"25",@"15",@"30",@"42",@"32",@"40",@"42",@"25",@"33"];
     
     if (path.section==0) {
         switch (path.row) {
             case 0:
-                return @[ary];
+                return @[ary, ary1, ary3];
             case 1:
                 return @[ary4];
             case 2:
