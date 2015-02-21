@@ -112,7 +112,7 @@
 //颜色数组
 - (NSArray *)UUChart_ColorArray:(UUChart *)chart
 {
-    return @[UUGreen,UURed,UUTwitterColor];
+    return @[UUGreen,UURed,UUTwitterColor, UUWeiboColor];
 }
 //显示数值范围
 - (CGRange)UUChartChooseRangeInLineChart:(UUChart *)chart
@@ -130,17 +130,6 @@
 }
 
 #pragma mark 折线图专享功能
-
-//标记数值区域
-/*
-- (CGRange)UUChartMarkRangeInLineChart:(UUChart *)chart
-{
-    if (path.row==2) {
-        return CGRangeMake(25, 75);
-    }
-    return CGRangeZero;
-}
- */
 
 //判断显示横线条
 
