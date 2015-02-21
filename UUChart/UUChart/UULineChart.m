@@ -111,7 +111,15 @@
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(i * _xLabelWidth+UUYLabelwidth, self.frame.size.height - UULabelHeight, _xLabelWidth, UULabelHeight)];
         label.text = labelText;
         [self addSubview:label];
+        NSLog(@"%f", self.frame.size.height - UULabelHeight + 20);
     }
+    
+    
+    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0 , self.frame.size.height - UULabelHeight + 20, _xLabelWidth, 10)];
+    lb.text = @"陈思行";
+    lb.font = [UIFont systemFontOfSize:8];
+    [lb setTextColor:UUStarYellow];
+    [self addSubview:lb];
     
     //画竖线
     for (int i=0; i<xLabels.count+1; i++) {
@@ -149,31 +157,10 @@
 -(void)strokeChart
 {
     for (int i=0; i<_yValues.count; i++) {
-        NSLog(@"%@", _yValues);
         NSMutableArray *childAry = _yValues[i];
         if (childAry.count==0) {
             return;
         }
-        //childAry[0] = [NSString stringWithFormat:@"金融 %@", childAry[0]];
-        
-        //取消获取最大最小值
-        //获取最大最小位置
-//        CGFloat max = [childAry[0] floatValue];
-//        CGFloat min = [childAry[0] floatValue];
-//        NSInteger max_i = 0;
-//        NSInteger min_i = 0;
-//        
-//        for (int j=0; j<childAry.count; j++){
-//            CGFloat num = [childAry[j] floatValue];
-//            if (max<=num){
-//                max = num;
-//                max_i = j;
-//            }
-//            if (min>=num){
-//                min = num;
-//                min_i = j;
-//            }
-//        }
         
         //划线
         CAShapeLayer *_chartLine = [CAShapeLayer layer];
@@ -234,7 +221,6 @@
 
 - (void)addPoint:(CGPoint)point index:(NSInteger)index value:(CGFloat)value
 {
-    NSLog(@"%f, %f", point.x, point.y);
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(5, 5, 8, 8)];
     view.center = point;
     view.layer.masksToBounds = YES;
