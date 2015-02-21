@@ -116,7 +116,7 @@
     
     
     UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0 , self.frame.size.height - UULabelHeight + 20, _xLabelWidth, 10)];
-    lb.text = @"陈思行";
+    lb.text = @"测试";
     lb.font = [UIFont systemFontOfSize:8];
     [lb setTextColor:UUStarYellow];
     [self addSubview:lb];
