@@ -115,12 +115,6 @@
     }
     
     
-    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0 , self.frame.size.height - UULabelHeight + 20, _xLabelWidth, 10)];
-    lb.text = @"测试";
-    lb.font = [UIFont systemFontOfSize:8];
-    [lb setTextColor:UUStarYellow];
-    [self addSubview:lb];
-    
     //画竖线
     for (int i=0; i<xLabels.count+1; i++) {
         CAShapeLayer *shapeLayer = [CAShapeLayer layer];
@@ -175,7 +169,6 @@
         CGFloat firstValue = [[childAry objectAtIndex:0] floatValue];
         CGFloat xPosition = (UUYLabelwidth + _xLabelWidth/2.0);
         CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
-        
         float grade = ((float)firstValue-_yValueMin) / ((float)_yValueMax-_yValueMin);
        
         //第一个点
