@@ -54,29 +54,65 @@
 {
 
     if (path.section==0) {
-        switch (path.row) {
-            case 0:
-                return [self getXNames];
-            case 1:
-                return [self getXTitles:11];
-            case 2:
-                return [self getXTitles:7];
-            case 3:
-                return [self getXTitles:7];
-            default:
-                break;
-        }
+        return [self getDateArray];
     }else{
-        switch (path.row) {
-            case 0:
-                return [self getXTitles:11];
+        return [self getXNames];
+    }
+    return [self getXTitles:20];
+}
+
+- (NSArray*)getDateArray{
+    NSMutableArray *dateary = [[NSMutableArray alloc] init];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDate *date = [NSDate date];
+    [formatter setTimeStyle:NSDateFormatterMediumStyle];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit |
+    NSMonthCalendarUnit |
+    NSDayCalendarUnit |
+    NSWeekdayCalendarUnit |
+    NSHourCalendarUnit |
+    NSMinuteCalendarUnit |
+    NSSecondCalendarUnit;
+    comps = [calendar components:unitFlags fromDate:date];
+    int week = (int)[comps week];
+    for (int j = week - 4; j <= week; j ++) {
+        int weekday = (j + 8) % 7;
+        switch (weekday) {
             case 1:
-                return [self getXTitles:7];
+                NSLog(@"星期一");
+                [dateary addObject:@"星期一"];
+                break;
+            case 2:
+                NSLog(@"星期二");
+                [dateary addObject:@"星期二"];
+                break;
+            case 3:
+                NSLog(@"星期三");
+                [dateary addObject:@"星期三"];
+                break;
+            case 4:
+                NSLog(@"星期四");
+                [dateary addObject:@"星期四"];
+                break;
+            case 5:
+                NSLog(@"星期五");
+                [dateary addObject:@"星期五"];
+                break;
+            case 6:
+                NSLog(@"星期六");
+                [dateary addObject:@"星期六"];
+                break;
+            case 0:
+                NSLog(@"星期日");
+                [dateary addObject:@"星期日"];
+                break;
             default:
                 break;
         }
     }
-    return [self getXTitles:20];
+    return (NSArray*)dateary;
 }
 
 //数值多重数组
@@ -86,25 +122,11 @@
     NSArray *ary1 = @[@"22",@"54",@"15",@"30",@"42"];
     NSArray *ary2 = @[@"76",@"34",@"54",@"23",@"15"];
     NSArray *ary3 = @[@"23",@"12",@"25",@"55",@"52"];
-    NSArray *ary4 = @[@"23",@"42",@"25",@"15",@"30",@"42",@"32",@"40",@"42",@"25",@"33"];
     
     if (path.section==0) {
-        switch (path.row) {
-            case 0:
-                return @[ary, ary1, ary3];
-            case 1:
-                return @[ary4];
-            case 2:
-                return @[ary1,ary2];
-            default:
-                return @[ary1,ary2,ary3];
-        }
+        return @[ary, ary1, ary3];
     }else{
-        if (path.row) {
-            return @[ary1,ary2];
-        }else{
-            return @[ary4];
-        }
+        return @[ary2];
     }
 }
 
@@ -134,12 +156,6 @@
 //判断显示横线条
 
 - (BOOL)UUChart:(UUChart *)chart ShowHorizonLineAtIndex:(NSInteger)index
-{
-    return YES;
-}
-
-//判断显示最大最小值
-- (BOOL)UUChart:(UUChart *)chart ShowMaxMinAtIndex:(NSInteger)index
 {
     return YES;
 }
