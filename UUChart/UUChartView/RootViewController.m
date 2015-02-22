@@ -57,7 +57,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 35);
+    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 35);
     UILabel *label = [[UILabel alloc]initWithFrame:frame];
     label.font = [UIFont systemFontOfSize:25];
     label.backgroundColor = UULightBlue;
