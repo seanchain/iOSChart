@@ -111,7 +111,6 @@
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(i * _xLabelWidth+UUYLabelwidth, self.frame.size.height - UULabelHeight, _xLabelWidth, UULabelHeight)];
         label.text = labelText;
         [self addSubview:label];
-        NSLog(@"%f", self.frame.size.height - UULabelHeight + 20);
     }
     
     
@@ -179,18 +178,14 @@
         [progressline setLineJoinStyle:kCGLineJoinRound];
         NSInteger index = 0;
         for (NSString * valueString in childAry) {
-            
             float grade =([valueString floatValue]-_yValueMin) / ((float)_yValueMax-_yValueMin);
-            if (index != 0) {
-                
-                CGPoint point = CGPointMake(xPosition+index*_xLabelWidth, chartCavanHeight - grade * chartCavanHeight+UULabelHeight);
-                [progressline addLineToPoint:point];
-                [progressline moveToPoint:point];
-                [self addPoint:point
-                         index:i
-                         value:[valueString floatValue]];
-//                [progressline stroke];
-            }
+            CGPoint point = CGPointMake(xPosition+index*_xLabelWidth, chartCavanHeight - grade * chartCavanHeight+UULabelHeight);
+            [progressline addLineToPoint:point];
+            [progressline moveToPoint:point];
+            NSLog(@"%f--%f", point.x, point.y);
+            [self addPoint:point
+                     index:i
+                     value:[valueString floatValue]];
             index += 1;
         }
         

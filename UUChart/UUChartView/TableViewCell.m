@@ -97,31 +97,24 @@
         int weekday = (j + 8) % 7;
         switch (weekday) {
             case 1:
-                NSLog(@"星期一");
                 [dateary addObject:@"星期一"];
                 break;
             case 2:
-                NSLog(@"星期二");
                 [dateary addObject:@"星期二"];
                 break;
             case 3:
-                NSLog(@"星期三");
                 [dateary addObject:@"星期三"];
                 break;
             case 4:
-                NSLog(@"星期四");
                 [dateary addObject:@"星期四"];
                 break;
             case 5:
-                NSLog(@"星期五");
                 [dateary addObject:@"星期五"];
                 break;
             case 6:
-                NSLog(@"星期六");
                 [dateary addObject:@"星期六"];
                 break;
             case 0:
-                NSLog(@"星期日");
                 [dateary addObject:@"星期日"];
                 break;
             default:
