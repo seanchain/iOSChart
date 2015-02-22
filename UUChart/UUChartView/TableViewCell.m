@@ -18,6 +18,10 @@
 
 @implementation TableViewCell
 
+
+//获取一个存放种类和对应颜色的
+
+
 - (void)configUI:(NSIndexPath *)indexPath
 {
     if (chartView) {
@@ -31,6 +35,18 @@
                                               withSource:self
                                                withStyle:indexPath.section==1?UUChartBarStyle:UUChartLineStyle];
     [chartView showInView:self.contentView];
+}
+
+- (NSArray *)getStat{
+    //获得数据变化的资料
+    NSArray *ary1 = @[@"22",@"54",@"15",@"30",@"42"];
+    NSArray *ary2 = @[@"76",@"34",@"54",@"23",@"15"];
+    NSArray *ary3 = @[@"23",@"12",@"25",@"55",@"52"];
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    [ret addObject:ary1];
+    [ret addObject:ary2];
+    [ret addObject:ary3];
+    return (NSArray*)ret;
 }
 
 - (NSArray *)getXTitles:(int)num
@@ -118,13 +134,11 @@
 //数值多重数组
 - (NSArray *)UUChart_yValueArray:(UUChart *)chart
 {
-    NSArray *ary = @[@"22",@"44",@"15",@"40",@"42"];
-    NSArray *ary1 = @[@"22",@"54",@"15",@"30",@"42"];
+    
     NSArray *ary2 = @[@"76",@"34",@"54",@"23",@"15"];
-    NSArray *ary3 = @[@"23",@"12",@"25",@"55",@"52"];
     
     if (path.section==0) {
-        return @[ary, ary1, ary3];
+        return [self getStat];
     }else{
         return @[ary2];
     }
@@ -134,22 +148,41 @@
 //颜色数组
 - (NSArray *)UUChart_ColorArray:(UUChart *)chart
 {
-    return @[UUGreen,UURed,UUTwitterColor, UUWeiboColor];
+    return @[UUGreen, UUTwitterColor, UUWeiboColor];
 }
+
+
 //显示数值范围
 - (CGRange)UUChartChooseRangeInLineChart:(UUChart *)chart
 {
-    if (path.section==0 && (path.row==0|path.row==1)) {
-        return CGRangeMake(60, 10);
-    }
-    if (path.section==1 && path.row==0) {
-        return CGRangeMake(60, 10);
-    }
-    if (path.row==2) {
-        return CGRangeMake(100, 0);
+    if (path.section == 0 || path.section == 1) {
+        NSArray * minAndMax = [self getMaxAndMin];
+        return CGRangeMake([minAndMax[1] integerValue], [minAndMax[0] integerValue]);
     }
     return CGRangeZero;
 }
+
+- (NSArray *) getMaxAndMin{
+    NSArray *arr = [self getStat];
+    NSUInteger minimum = 1000000000;
+    NSUInteger maximum = 0;
+    for (int i = 0; i < arr.count; i ++) {
+        for (int j = 0; j < 5; j ++) {
+            NSUInteger val = [arr[i][j] integerValue];
+            if (val > maximum) {
+                maximum = val;
+            }
+            if (val < minimum) {
+                minimum = val;
+            }
+        }
+    }
+    minimum = (minimum / 10) * 10;
+    maximum = (maximum / 10 + 2) * 10;
+    return @[[NSString stringWithFormat:@"%lu", minimum],  [NSString stringWithFormat:@"%lu", maximum]];
+}
+
+
 
 #pragma mark 折线图专享功能
 
